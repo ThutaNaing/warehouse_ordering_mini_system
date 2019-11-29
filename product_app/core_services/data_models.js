@@ -10,7 +10,7 @@ const data_access = function(app, mongoose) {
     let productSchema = new mongoose.Schema({
         name: String,
         description: String,
-        serial_no: Number,
+        serial_no: String,
         manufacture: manufactureSchema,
         price: Number,
         item_balance: Number

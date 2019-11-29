@@ -25,7 +25,7 @@ mongoose.connect('mongodb://admin:admin@127.0.0.1:27017/warehouse_productdb?auth
     () => {console.log('connected successfully!')}
 );
 
-var product_models = data_models(app, mongoose);
+const product_models = data_models(app, mongoose);
 data_services(app, product_models)
 product_router(app);
 /** initialize graphql express api */
