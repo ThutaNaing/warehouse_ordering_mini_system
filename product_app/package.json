@@ -1,0 +1,18 @@
+{
+  "name": "mini_warehouse",
+  "version": "1.0.0",
+  "description": "api first microservice sample project for sale ordering system",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thuta Naing",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.5.8",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.11"
+  }
+}
