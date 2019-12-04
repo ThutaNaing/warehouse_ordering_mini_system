@@ -2,3 +2,4 @@ product_app/node_modules/
 web_ui_app/node_modules/
 web_ui_app/build/
 web_ui_app/.gitignore
+mini_warehouse_ws.code-workspace
