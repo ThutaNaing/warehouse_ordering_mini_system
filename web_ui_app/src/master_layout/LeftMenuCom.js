@@ -16,7 +16,6 @@ function LeftMenuDrawer() {
     
     return (
         <div>
-            <IconButton onClick={handleDrawerOpen}>OPen</IconButton>
             <Drawer
                 open={open}
                 variant="persistent" 
