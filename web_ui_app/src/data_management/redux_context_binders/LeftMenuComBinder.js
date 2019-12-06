@@ -1,7 +1,7 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import MainCom from '../../master_layout/MainCom'
-import { showMenu } from '../actions'
+import LeftMenuCom from '../../master_layout/LeftMenuCom';
+import { showMenu } from '../actions';
 
 const mapStateToProps = state => {
     console.log("mapStateToProps");
@@ -16,5 +16,4 @@ const mapDispatchToProps = dispatch => {
         openActionFired: (isClicked)=> { dispatch(showMenu("Clicked!")) }
     }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainCom)
+export default connect(mapStateToProps, mapDispatchToProps)(LeftMenuCom)

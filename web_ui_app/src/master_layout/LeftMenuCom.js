@@ -1,14 +1,17 @@
 import React, {useState} from 'react';
+import { useSelector } from 'react-redux';
 import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 
-function LeftMenuDrawer() {
-    const [open, setOpen] = useState(false);
-    const handleDrawerOpen = () => {
-        setOpen(true);
-        console.log('checking handleDrawerOpen :: '+open);
-    };
+function LeftMenuDrawer({ isClicked, openActionFired }) {
+    console.log(isClicked);
+    console.log()
+    const [open, setOpen] = useState( useSelector(state => state.menuBarReducer.isClicked) );
+
+    // const handleDrawerOpen = () => {
+    //     setOpen(true);
+    //     console.log('checking handleDrawerOpen :: '+open);
+    // };
     const handleDrawerClose = () => {
         setOpen(false);
         console.log('checking handleDrawerClose :: '+open);

@@ -6,19 +6,19 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import { showMenu, hideMenu } from '../data_management/actions'
 
-function TopTitleAppBar(isClickedLeftMenu) {
+function TopTitleAppBar({ isClicked, openActionFired }) {
 
     void function() {
         console.log('checking redux state isClicked!');
-        console.log({isClickedLeftMenu});
+        console.log('check isClicked');
+        console.log({isClicked});
+        console.log('check isClickActionFired');
+        console.log({openActionFired});
     }();
 
     const showLeftMenu = function() {
-        if(this.props.toggleStatus == 'F') {
-            this.props.hideMenu("Clicked!");
-        } else {
-            this.props.showMenu("Clicked!");
-        }
+        console.log('checking click showLeftMenu');
+        openActionFired();
     }
 
     return (
