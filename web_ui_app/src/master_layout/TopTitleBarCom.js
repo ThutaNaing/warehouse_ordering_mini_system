@@ -1,28 +1,36 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { showMenu, hideMenu } from '../data_management/actions'
+import { showMenu } from '../data_management/actions';
+import AppContentCom from './AppContentCom';
 
-function TopTitleAppBar({ isClicked, openActionFired }) {
-
-    void function() {
-        console.log('checking redux state isClicked!');
-        console.log('check isClicked');
-        console.log({isClicked});
-        console.log('check isClickActionFired');
-        console.log({openActionFired});
-    }();
+function TopTitleAppBar() {
+    const open = useSelector(state => state.menuBarReducer.isClicked);
+    const [contentDivWidth, setContentDivWidth] = useState('');
+    const dispatch = useDispatch();
 
     const showLeftMenu = function() {
         console.log('checking click showLeftMenu');
-        openActionFired();
+        console.log(contentDivWidth);
+        dispatch(showMenu("Showed"));
     }
 
+    useEffect(() => {
+        console.log("Checkng open at useEffect");
+        console.log(open);
+        if(open) {
+            setContentDivWidth('content-div-width');
+        } else {
+            setContentDivWidth('');
+        }
+    }, []);
+
     return (
-        <div>
+        <div className={contentDivWidth}>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton 
@@ -34,6 +42,7 @@ function TopTitleAppBar({ isClicked, openActionFired }) {
                     </IconButton>
                 </Toolbar>
             </AppBar>
+            <AppContentCom />
         </div>
     );
 }

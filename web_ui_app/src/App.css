@@ -20,3 +20,12 @@
 .App-link {
   color: #09d3ac;
 }
+
+.content-div-width {
+  /* width: 70% !important; */
+  margin-left: 30%;
+}
+
+.left-menu-width {
+  width: 90% !important;
+}

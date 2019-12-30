@@ -1,16 +1,16 @@
-import {HeaderComActionTypes} from '../actions'
+import {LeftMenuComActionType} from '../actions'
 
 const initialState = {
     isClicked: false
 };
 
-function menuBarReducer(state = initialState, action) {
+function menuListReducer(state = initialState, action) {
     switch(action.type) {
-        case HeaderComActionTypes.SHOW_MENU_BAR:
+        case LeftMenuComActionType.SHOW_CUSTOMER_FORM:
             return Object.assign({}, state, {
                 isClicked: true
             });
-        case HeaderComActionTypes.HIDE_MENU_BAR:
+        case LeftMenuComActionType.HIDE_CUSTOMER_FORM:
             return Object.assign({}, state, {
                 isClicked: false
             });
@@ -18,4 +18,4 @@ function menuBarReducer(state = initialState, action) {
             return state;
     }
 }
-export default menuBarReducer
+export default menuListReducer

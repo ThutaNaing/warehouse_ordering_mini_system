@@ -1,34 +1,70 @@
-import React, {useState} from 'react';
-import { useSelector } from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 
-function LeftMenuDrawer({ isClicked, openActionFired }) {
-    console.log(isClicked);
-    console.log()
-    const [open, setOpen] = useState( useSelector(state => state.menuBarReducer.isClicked) );
+import { hideMenu, showCustomerForm } from '../data_management/actions';
 
-    // const handleDrawerOpen = () => {
-    //     setOpen(true);
-    //     console.log('checking handleDrawerOpen :: '+open);
-    // };
+function LeftMenuDrawer() {
+    const open = useSelector(state => state.menuBarReducer.isClicked);
+    const [menuDivWidth, setMenuDivWidth] = useState('');
+    const dispatch = useDispatch();
+
     const handleDrawerClose = () => {
-        setOpen(false);
-        console.log('checking handleDrawerClose :: '+open);
+        dispatch(hideMenu("hide"));
     };
+
+    const handleCustomerForm = () => {
+        console.log("showCustomerForm");
+        dispatch(showCustomerForm("showCustomer"));
+    }
+
+    useEffect(() => {
+        console.log("Checkng open at useEffect");
+        console.log(open);
+        if(open) {
+            setMenuDivWidth('left-menu-width');
+        } else {
+            setMenuDivWidth('');
+        }
+    }, []);
     
     return (
-        <div>
+        <div className={menuDivWidth}>
             <Drawer
                 open={open}
                 variant="persistent" 
                 anchor="left">
-                <Button 
-                    variant="contained" 
-                    color="primary" 
-                    onClick={handleDrawerClose}>
-                        Close
-                </Button>
+
+                <List>
+                    <ListItem>
+                        <ListItemText primary="Mini Order" />
+                        <IconButton 
+                            aria-label="close"
+                            onClick={handleDrawerClose}>
+                                <ArrowBackIcon />
+                        </IconButton>
+                    </ListItem>
+
+                    <Divider />
+
+                    <ListItem button>
+                        <ListItemText primary="Customer" onClick={handleCustomerForm} />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemText primary="Manufacturer" />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemText primary="Order Form" />
+                    </ListItem>
+                </List>
+
+                
             </Drawer>
         </div>
     );
