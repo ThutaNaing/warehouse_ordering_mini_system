@@ -6,7 +6,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { showMenu } from '../data_management/actions';
-import AppContentCom from './AppContentCom';
+
 
 function TopTitleAppBar() {
     const open = useSelector(state => state.menuBarReducer.isClicked);
@@ -19,15 +19,15 @@ function TopTitleAppBar() {
         dispatch(showMenu("Showed"));
     }
 
-    useEffect(() => {
-        console.log("Checkng open at useEffect");
-        console.log(open);
-        if(open) {
-            setContentDivWidth('content-div-width');
-        } else {
-            setContentDivWidth('');
-        }
-    }, []);
+    // useEffect(() => {
+    //     console.log("Checkng open at useEffect");
+    //     console.log(open);
+    //     if(open) {
+    //         setContentDivWidth('content-div-width');
+    //     } else {
+    //         setContentDivWidth('');
+    //     }
+    // }, []);
 
     return (
         <div className={contentDivWidth}>
@@ -42,7 +42,6 @@ function TopTitleAppBar() {
                     </IconButton>
                 </Toolbar>
             </AppBar>
-            <AppContentCom />
         </div>
     );
 }

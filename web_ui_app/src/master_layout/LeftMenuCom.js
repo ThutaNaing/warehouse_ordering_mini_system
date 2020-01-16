@@ -24,21 +24,20 @@ function LeftMenuDrawer() {
         dispatch(showCustomerForm("showCustomer"));
     }
 
-    useEffect(() => {
-        console.log("Checkng open at useEffect");
-        console.log(open);
-        if(open) {
-            setMenuDivWidth('left-menu-width');
-        } else {
-            setMenuDivWidth('');
-        }
-    }, []);
+    // useEffect(() => {
+    //     console.log("Checkng open at useEffect");
+    //     console.log(open);
+    //     if(open) {
+    //         setMenuDivWidth('left-menu-width');
+    //     } else {
+    //         setMenuDivWidth('');
+    //     }
+    // }, []);
     
     return (
         <div className={menuDivWidth}>
             <Drawer
                 open={open}
-                variant="persistent" 
                 anchor="left">
 
                 <List>
