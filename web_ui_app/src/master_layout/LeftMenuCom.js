@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
-import { hideMenu, showCustomerForm } from '../data_management/actions';
+import { hideMenu, showCustomerForm, showItemEntryForm } from '../data_management/actions';
 
 function LeftMenuDrawer() {
     const open = useSelector(state => state.menuBarReducer.isClicked);
@@ -22,6 +22,11 @@ function LeftMenuDrawer() {
     const handleCustomerForm = () => {
         console.log("showCustomerForm");
         dispatch(showCustomerForm("showCustomer"));
+    }
+
+    const handleItemEntryForm = () => {
+        console.log("showItemEntryForm");
+        dispatch(showItemEntryForm("showItemEntry"));
     }
 
     // useEffect(() => {
@@ -56,7 +61,7 @@ function LeftMenuDrawer() {
                         <ListItemText primary="Customer" onClick={handleCustomerForm} />
                     </ListItem>
                     <ListItem button>
-                        <ListItemText primary="Manufacturer" />
+                        <ListItemText primary="Sale Item Entry Form" onClick={handleItemEntryForm} />
                     </ListItem>
                     <ListItem button>
                         <ListItemText primary="Order Form" />

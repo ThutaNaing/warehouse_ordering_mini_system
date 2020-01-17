@@ -5,7 +5,9 @@ export const HeaderComActionTypes = {
 
 export const LeftMenuComActionType = {
     SHOW_CUSTOMER_FORM: 'SHOW_CUSTOMER_FORM',
-    HIDE_CUSTOMER_FORM: 'HIDE_CUSTOMER_FORM'
+    HIDE_CUSTOMER_FORM: 'HIDE_CUSTOMER_FORM',
+    SHOW_ITEM_ENTRY_FORM: 'SHOW_ITEM_ENTRY_FORM',
+    HIDE_ITEM_ENTRY_FORM: 'HIDE_ITEM_ENTRY_FORM',
 }
 
 export function showMenu(isClicked) {
@@ -29,5 +31,17 @@ export function showCustomerForm(isClicked) {
 export function hideCustomerForm(isClicked) {
     return {
         type: LeftMenuComActionType.HIDE_CUSTOMER_FORM, isClicked
+    }
+}
+
+export function showItemEntryForm(isClicked) {
+    return {
+        type: LeftMenuComActionType.SHOW_ITEM_ENTRY_FORM, isClicked
+    }
+}
+
+export function hideItemEntryForm(isClicked) {
+    return {
+        type: LeftMenuComActionType.HIDE_ITEM_ENTRY_FORM, isClicked
     }
 }

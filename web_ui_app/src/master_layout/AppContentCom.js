@@ -1,65 +1,42 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import SaleItemEntryForm from '../view_form_layout/SaleItemEntryCom';
+import CustomerEntryForm from '../view_form_layout/CustomerEntryCom';
+
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginLeft: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+}));
+const style = {
+    'background-color': '#d6205f'
+};
 
 function AppContentCom() {
-    const checked = useSelector(state => state.menuListReducer.isClicked);
+    const classes = useStyles();
+    const itemEntryGrow = useSelector(state => state.menuListReducer.itemEntryFrmClicked);
+    const customerEntryGrow = useSelector(state => state.menuListReducer.customerEntryFrmClicked);
 
     useEffect(() => {
-        console.log(checked);
+        console.log(itemEntryGrow);
     }, []);
 
     return (
-        <Grow in={checked} {...(checked ? { timeout: 1000 } : {})}>
-            <Paper elevation={3}>
-                <Grid 
-                    container 
-                    spacing={2}
-                    direction="row">
-                    <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <Typography>Name</Typography>
-                    </Grid>
-                    <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-                    </Grid>
-
-                    <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <Typography>Serial No</Typography>
-                    </Grid>
-                    <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-                    </Grid>
-
-                    <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <Typography>Price</Typography>
-                    </Grid>
-                    <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" 
-                            type="number" InputLabelProps={{ shrink: true, }} />
-                    </Grid>
-
-                    <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <Typography>Balance</Typography>
-                    </Grid>
-                    <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <TextField label="Outlined" variant="outlined" defaultValue="0"
-                            InputProps={{ readOnly: true, }}/>
-                    </Grid>
-
-                    <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <Typography>Description</Typography>
-                    </Grid>
-                    <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <TextField label="Outlined" variant="outlined"
-                            multiline rows={5}/>
-                    </Grid>
-                </Grid>
-            </Paper>
-        </Grow>
+        <div>
+            {itemEntryGrow ? (<SaleItemEntryForm></SaleItemEntryForm>):(<div></div>)}
+            <br/>
+            <br/>
+            {customerEntryGrow ? (<CustomerEntryForm></CustomerEntryForm>):(<div></div>)}
+        </div>
     );
 }
 export default AppContentCom;

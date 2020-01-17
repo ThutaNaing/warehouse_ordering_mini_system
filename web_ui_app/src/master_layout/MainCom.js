@@ -42,7 +42,6 @@ function MainCom() {
                 </Grid>
                 
             </Grid>
-            <img src={logo} className="App-logo" alt="logo" />
         </div>
     );
 }
