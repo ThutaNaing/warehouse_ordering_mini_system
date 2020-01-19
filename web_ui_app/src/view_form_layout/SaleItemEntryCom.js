@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { hideItemEntryForm } from '../data_management/actions';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -29,8 +30,13 @@ const style = {
 };
 
 function SaleItemEntryForm() {
+    const dispatch = useDispatch();
     const classes = useStyles();
     const itemEntryGrow = useSelector(state => state.menuListReducer.itemEntryFrmClicked);
+
+    const handleSaleItmEntryFrmClose = () => {
+        dispatch(hideItemEntryForm("hide"));
+    }
 
     return (
         <Grow in={itemEntryGrow} {...(itemEntryGrow ? { timeout: 1000 } : {})}>
@@ -54,7 +60,7 @@ function SaleItemEntryForm() {
                                             Sale Item Entry Form
                                         </Typography>
                                         <IconButton edge="start" className={classes.menuButton} 
-                                            color="inherit" aria-label="menu">
+                                            color="inherit" aria-label="menu" onClick={handleSaleItmEntryFrmClose}>
                                             <CancelRoundedIcon />
                                         </IconButton>
                                     </Toolbar>
@@ -67,29 +73,29 @@ function SaleItemEntryForm() {
                         <Typography>Name</Typography>
                     </Grid>
                     <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+                        <TextField id="outlined-basic" label="name" variant="outlined" />
                     </Grid>
 
                     <Grid item xs={6} sm={6} md={3} lg={2}>
                         <Typography>Serial No</Typography>
                     </Grid>
                     <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+                        <TextField id="outlined-basic" label="serial no" variant="outlined" />
                     </Grid>
 
                     <Grid item xs={6} sm={6} md={3} lg={2}>
                         <Typography>Price</Typography>
                     </Grid>
                     <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" 
-                            type="number" InputLabelProps={{ shrink: true, }} />
+                        <TextField id="outlined-basic" label="price" variant="outlined"
+                            defaultValue="0" type="number" InputLabelProps={{ shrink: true, }} />
                     </Grid>
 
                     <Grid item xs={6} sm={6} md={3} lg={2}>
                         <Typography>Balance</Typography>
                     </Grid>
                     <Grid item xs={6} sm={6} md={3} lg={2}>
-                        <TextField label="Outlined" variant="outlined" defaultValue="0"
+                        <TextField label="balance" variant="outlined" defaultValue="0"
                             InputProps={{ readOnly: true, }}/>
                     </Grid>
 
@@ -99,7 +105,7 @@ function SaleItemEntryForm() {
                     <Grid item xs={6} sm={6} md={3} lg={2}>
 
                         <Grid item>
-                            <TextField label="Outlined" variant="outlined"
+                            <TextField label="description" variant="outlined"
                                 multiline rows={5}/>
                         </Grid>
                         <Grid 

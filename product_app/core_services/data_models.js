@@ -16,7 +16,23 @@ const data_access = function(app, mongoose) {
         item_balance: Number
     });
 
+    let customerSchema = new mongoose.Schema({
+        name: String,
+        email: {
+            type: String,
+            trim: true,
+            lowercase: true,
+            unique: true,
+            required:'Email address is required',
+            match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+        },
+        description: String,
+        ph_no: String,
+        address: String
+    });
+
     return {
+        customerSchema: mongoose.model('Customer', customerSchema),
         manufactureModel: mongoose.model('Manufacture', manufactureSchema),
         productSchema: mongoose.model('Product', productSchema)
     };
