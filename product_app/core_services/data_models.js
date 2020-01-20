@@ -32,9 +32,9 @@ const data_access = function(app, mongoose) {
     });
 
     return {
-        customerSchema: mongoose.model('Customer', customerSchema),
+        customerModel: mongoose.model('Customer', customerSchema),
         manufactureModel: mongoose.model('Manufacture', manufactureSchema),
-        productSchema: mongoose.model('Product', productSchema)
+        productModel: mongoose.model('Product', productSchema)
     };
 }
 module.exports = data_access;
