@@ -11,7 +11,11 @@ import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { hideCustomerForm } from '../data_management/actions';
+import Switch from '@material-ui/core/Switch';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import { hideCustomerForm, showCustTablePanel, hideCustTablePanel } from '../data_management/actions';
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
@@ -24,6 +28,9 @@ const useStyles = makeStyles(theme => ({
     title: {
         flexGrow: 1,
     },
+    showCutTblBtn: {
+        marginLeft: theme.spacing(15),
+    },
 }));
 const style = {
     'background-color': '#d6205f'
@@ -33,6 +40,7 @@ function CustomerEntryForm() {
     const dispatch = useDispatch();
     const classes = useStyles();
     const customerEntryGrow = useSelector(state => state.menuListReducer.customerEntryFrmClicked);
+    const customerTableShow = useSelector(state => state.customerReducer.custTablePanelClicked);
     const [custFrmName, setCustFrmName] = useState('');
     const [custFrmEmail, setCustFrmEmail] = useState('');
     const [custFrmPhNo, setCustFrmPhNo] = useState('');
@@ -42,6 +50,14 @@ function CustomerEntryForm() {
 
     const handleCustEntryFrmClose = () => {
         dispatch(hideCustomerForm("hide"));
+    };
+
+    const handleCustTblPanelAction = () => {
+        if(!customerTableShow) {
+            dispatch(showCustTablePanel("show"));
+        } else {
+            dispatch(hideCustTablePanel("hide"));
+        }
     };
 
     const handleCustSaveBtn = () => {
@@ -54,6 +70,7 @@ function CustomerEntryForm() {
         }).then(function (response) {
             console.log('return from /api/v1/customer/add');
             console.log(response);
+            console.log(response["data"]);
         }).catch(function (error) {
             console.log(error);
         });
@@ -165,8 +182,32 @@ function CustomerEntryForm() {
                             
                         </Grid>
 
-                </Grid>
+                        <Grid 
+                            container
+                            justify="flex-end"
+                            direction="row">
+                                
+                                <Grid item xs={9} sm={5} md={3} lg={2}>
+                                    <FormControl component="fieldset">
+                                        <FormGroup aria-label="position" row>
+                                            <FormControlLabel
+                                                value="start"
+                                                control={
+                                                    <Switch 
+                                                        color="primary"
+                                                        checked={customerTableShow}
+                                                        onChange={handleCustTblPanelAction}/>
+                                                }
+                                                label="Table Show"
+                                                labelPlacement="start"
+                                            />
+                                        </FormGroup>
+                                    </FormControl>
+                                </Grid>
 
+                        </Grid>
+
+                </Grid>
             </Paper>
         </Grow>
     );

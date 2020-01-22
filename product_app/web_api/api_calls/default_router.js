@@ -9,8 +9,9 @@ const initialize_router = function (core_biz_services) {
         let customer = core_biz_services.saveCustomerData(req.body);
         console.log('detct persisted customer!');
         customer.then(function(data) {
-            console.log(customer);
-            res.json(customer);
+            console.log(data);
+            console.log(JSON.stringify(data));
+            res.json(data);
         });
         
     });
