@@ -12,7 +12,8 @@ export const LeftMenuComActionType = {
 
 export const CustomerActionType = {
     SHOW_CUST_TABLE_PANEL: 'SHOW_CUST_TABLE_PANEL',
-    HIDE_CUST_TABLE_PANEL: 'HIDE_CUST_TABLE_PANEL'
+    HIDE_CUST_TABLE_PANEL: 'HIDE_CUST_TABLE_PANEL',
+    DATA_INJECT_TBL: 'DATA_INJECT_TBL',
 }
 
 export function showMenu(isClicked) {
@@ -60,5 +61,11 @@ export function showCustTablePanel(isClicked) {
 export function hideCustTablePanel(isClicked) {
     return {
         type: CustomerActionType.HIDE_CUST_TABLE_PANEL, isClicked
+    }
+}
+
+export function injectCustDataToTbl(dataJson) {
+    return {
+        type: CustomerActionType.DATA_INJECT_TBL, dataJson
     }
 }

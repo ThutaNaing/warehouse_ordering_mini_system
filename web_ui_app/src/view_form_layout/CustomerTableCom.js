@@ -14,19 +14,18 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        backgroundColor: '#000000',
-        width: '100%',
-    },
-    heading: {
-        fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular,
-    },
-}));
+// const useStyles = makeStyles(theme => ({
+//     root: {
+//         backgroundColor: '#000000',
+//         width: '100%',
+//     },
+//     heading: {
+//         fontSize: theme.typography.pxToRem(15),
+//         fontWeight: theme.typography.fontWeightRegular,
+//     },
+// }));
 
 function CustomerTableCom() {
-    const classes = useStyles();
     const customerTableGrow = useSelector(state => state.customerReducer.custTablePanelClicked);
 
     return (
