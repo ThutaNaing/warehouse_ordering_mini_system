@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
@@ -27,6 +27,12 @@ import Divider from '@material-ui/core/Divider';
 
 function CustomerTableCom() {
     const customerTableGrow = useSelector(state => state.customerReducer.custTablePanelClicked);
+    // const custTblDataArryHappened = useSelector(state => state.customerReducer.custTblDataArryHappened);
+    const custReducer = useSelector(state => state.customerReducer);
+
+    useEffect(function() {
+        console.log(custReducer);
+    });
 
     return (
         <Grow in={customerTableGrow} {...(customerTableGrow ? { timeout: 1000 } : {} )}>
@@ -44,21 +50,24 @@ function CustomerTableCom() {
                                     <TableRow>
                                         <TableCell>id</TableCell>
                                         <TableCell align="right">abac</TableCell>
-                                        <TableCell align="right">abac</TableCell>
-                                        <TableCell align="right">abac</TableCell>
-                                        <TableCell align="right">abac</TableCell>
-                                        <TableCell align="right">abac</TableCell>
+                                        <TableCell align="right">ds</TableCell>
+                                        <TableCell align="right">we</TableCell>
+                                        <TableCell align="right">gg</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    <TableRow>
-                                        <TableCell>1</TableCell>
-                                        <TableCell align="right">123</TableCell>
-                                        <TableCell align="right">123</TableCell>
-                                        <TableCell align="right">123</TableCell>
-                                        <TableCell align="right">123</TableCell>
-                                        <TableCell align="right">123</TableCell>
-                                    </TableRow>
+                                    {(custReducer.custTblDataArryHappened) ? custReducer.custTblDataArry.map( function(row) {
+                                        if(row) {
+                                            return (<TableRow>
+                                                        <TableCell>{row.name}</TableCell>
+                                                        <TableCell align="right">{row.email}</TableCell>
+                                                        <TableCell align="right">{row.description}</TableCell>
+                                                        <TableCell align="right">{row.ph_no}</TableCell>
+                                                        <TableCell align="right">{row.address}</TableCell>
+                                                    </TableRow>);
+                                        }
+                                        return ('');
+                                    }) : ('')}
                                 </TableBody>
                             </Table>
                         </TableContainer>

@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import SaleItemEntryForm from '../view_form_layout/SaleItemEntryCom';
 import CustomerEntryForm from '../view_form_layout/CustomerEntryCom';
 import CustomerTableCom from '../view_form_layout/CustomerTableCom';
+import LoginFormCom from '../view_form_layout/LoginFormCom';
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,7 +24,6 @@ const style = {
 };
 
 function AppContentCom() {
-    const classes = useStyles();
     const itemEntryGrow = useSelector(state => state.menuListReducer.itemEntryFrmClicked);
     const customerEntryGrow = useSelector(state => state.menuListReducer.customerEntryFrmClicked);
     const customerTableGrow = useSelector(state => state.customerReducer.custTablePanelClicked);
@@ -53,6 +53,7 @@ function AppContentCom() {
                     <CustomerTableCom></CustomerTableCom>
                 </Grid>
             ):("")}
+            <LoginFormCom></LoginFormCom>
         </Grid>
     );
 }

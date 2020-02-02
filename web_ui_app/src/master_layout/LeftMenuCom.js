@@ -42,6 +42,7 @@ function LeftMenuDrawer() {
     return (
         <div className={menuDivWidth}>
             <Drawer
+                onClose={handleDrawerClose}
                 open={open}
                 anchor="left">
 

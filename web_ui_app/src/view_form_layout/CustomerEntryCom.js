@@ -15,7 +15,12 @@ import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { hideCustomerForm, showCustTablePanel, hideCustTablePanel } from '../data_management/actions';
+import {
+    hideCustomerForm, 
+    showCustTablePanel, 
+    hideCustTablePanel,
+    injectCustDataToTbl,
+} from '../data_management/actions';
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
@@ -71,6 +76,7 @@ function CustomerEntryForm() {
             console.log('return from /api/v1/customer/add');
             console.log(response);
             console.log(response["data"]);
+            dispatch(injectCustDataToTbl(response["data"]));
         }).catch(function (error) {
             console.log(error);
         });

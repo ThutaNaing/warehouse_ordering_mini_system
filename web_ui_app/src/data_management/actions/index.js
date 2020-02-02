@@ -1,6 +1,8 @@
 export const HeaderComActionTypes = {
     SHOW_MENU_BAR: 'SHOW_MENU_BAR',
-    HIDE_MENU_BAR: 'HIDE_MENU_BAR'
+    HIDE_MENU_BAR: 'HIDE_MENU_BAR',
+    SHOW_LOGIN_FORM: 'SHOW_LOGIN_FORM',
+    HIDE_LOGIN_FORM: 'HIDE_LOGIN_FORM'
 };
 
 export const LeftMenuComActionType = {
@@ -25,6 +27,18 @@ export function showMenu(isClicked) {
 export function hideMenu(isClicked) {
     return {
         type: HeaderComActionTypes.HIDE_MENU_BAR, isClicked
+    }
+}
+
+export function showLoginForm(isClicked) {
+    return {
+        type: HeaderComActionTypes.SHOW_LOGIN_FORM, isClicked
+    }
+}
+
+export function hideLoginForm(isClicked) {
+    return {
+        type: HeaderComActionTypes.HIDE_LOGIN_FORM, isClicked
     }
 }
 
