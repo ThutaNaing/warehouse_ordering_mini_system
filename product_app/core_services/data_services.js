@@ -10,6 +10,19 @@ const data_services = function(app, product_models) {
                 address: customerJson.address
             });
             return CustomerModel.save();
+        },
+        findCompanyOnlyOne: function(companyJson) {
+            return product_models.companyModel.findOne(companyJson);
+        },
+        saveCompanyData: function(companyJson) {
+            const CompanyModel = new product_models.companyModel({
+                name: customerJson.name,
+                email: customerJson.email,
+                description: customerJson.description,
+                ph_no: customerJson.ph_no,
+                address: customerJson.address
+            });
+            return CompanyModel.save();
         }
     };
 

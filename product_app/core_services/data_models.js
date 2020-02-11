@@ -31,10 +31,29 @@ const data_access = function(app, mongoose) {
         address: String
     });
 
+    let companySchema = new mongoose.Schema({
+        name: String,
+        email: {
+            type: String,
+            trim: true,
+            lowercase: true,
+            unique: true,
+            required:'Email address is required',
+            match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+        },
+        password: String,
+        description: String,
+        ph_no: String,
+        address: String,
+        customers: [customerSchema],
+        products: [productSchema],
+    });
+
     return {
         customerModel: mongoose.model('Customer', customerSchema),
         manufactureModel: mongoose.model('Manufacture', manufactureSchema),
-        productModel: mongoose.model('Product', productSchema)
+        productModel: mongoose.model('Product', productSchema),
+        companyModel: mongoose.model('Company', companySchema)
     };
 }
 module.exports = data_access;

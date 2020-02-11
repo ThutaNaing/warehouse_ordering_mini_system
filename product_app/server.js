@@ -9,6 +9,7 @@ const graphql_query_resolver = require('./web_api/graphql_schema/graphql_query_r
 const product_router = require('./web_api/api_calls/default_router');
 const data_models = require('./core_services/data_models');
 const data_services = require('./core_services/data_services')
+const security = require('./custom_middlewares/security')
 
 /** setting up express app server */
 const app = express()
@@ -27,25 +28,28 @@ mongoose.connect('mongodb://admin:admin@127.0.0.1:27017/warehouse_productdb?auth
 );
 
 const product_models = data_models(app, mongoose);
-const core_biz_services = data_services(app, product_models)
+const core_biz_services = data_services(app, product_models);
+
+/** initialize web ui server */
+app.use( express.static(path.join(__dirname, 'sparrow_peck_static_pages')) );
+/** authentication middle */
+const secured_app = security(app, product_models).app;
 
 /** initialize REST api */
 const default_router = product_router(core_biz_services);
-app.use(express.urlencoded());
-app.use(express.json());
-app.use('/api/v1',default_router);
+secured_app.use(express.urlencoded());
+secured_app.use(express.json());
+secured_app.use('/api/v1',default_router);
 
 /** initialize graphql express api */
-app.use('/graphql', graphqlHTTP({
+secured_app.use('/graphql', graphqlHTTP({
     schema: graphql_schema,
     rootValue: graphql_query_resolver,
     graphiql: true,
 }));
 
-/** initialize web ui server */
-app.use( express.static(path.join(__dirname, 'build')) );
-app.get('/web/dashboard', function (req, res) {
+secured_app.use( express.static(path.join(__dirname, 'build')) );
+secured_app.get('/mini-wh/web/dashboard', function (req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-
-app.listen(port, ()=>{ console.log(`product_api_server is running on port ${port}!`) })
+secured_app.listen(port, ()=>{ console.log(`product_api_server is running on port ${port}!`) })
